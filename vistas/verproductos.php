@@ -1,4 +1,5 @@
 <?php
+require ('../modelos/exigirsesion.php');
 require_once("../modelos/mdb.php");
 require_once("../modelos/mconexion.php");
 require_once("../controladores/cargarControllers.php");
@@ -33,6 +34,13 @@ require_once("../controladores/cargarControllers.php");
         <h1 class="titulo">
             Inventory List
         </h1>
+        <a href="cargaMasiva.php" class="btn btn-success btn-lg">
+
+            <i class="bi bi-plus-circle"></i>
+
+            carga masiva
+
+        </a>
 
         <a href="insertProduct.php" class="btn btn-success btn-lg">
 

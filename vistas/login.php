@@ -16,29 +16,31 @@ unset($_SESSION["mensaje"]);
     
 
     <main class="contenedor-formulario">
-        <div class="logo-login">
-        <img src="../publico/imagenes/logo.svg" alt="">
+        <div class="login">
+            <img src="../publico/imagenes/logo.svg" alt="">
         </div >
-        <h1>Iniciar Sesión</h1>
+        <div class="login">
+                <h1>Iniciar Sesión</h1>
 
-        <?php if ($mensaje): ?>
-            <p class="mensaje-alerta"><?= htmlspecialchars($mensaje) ?></p>
-        <?php endif; ?>
+                <?php if ($mensaje): ?>
+                    <p class="mensaje-alerta"><?= htmlspecialchars($mensaje) ?></p>
+                <?php endif; ?>
 
-        <form action="../controladores/logincontrolador.php" method="POST" class="formulario">
+                <form action="../controladores/logincontrolador.php" method="POST" class="formulario">
 
-            <label for="correo">Correo electrónico</label>
-            <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
 
-            <label for="contrasena">Contraseña</label>
-            <input type="password" id="contrasena" name="contrasena" placeholder="********" required>
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena" name="contrasena" placeholder="********" required>
 
-            <button type="submit" class="boton boton-primario">Ingresar</button>
-        </form>
+                    <button type="submit" class="boton boton-primario">Ingresar</button>
+                </form>
 
-        <p class="enlace-secundario">
-            ¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a>
-        </p>
+                <p class="enlace-secundario">
+                    ¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a>
+                </p>
+        </div>
     </main>
 
 </body>

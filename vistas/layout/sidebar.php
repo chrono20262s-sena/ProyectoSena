@@ -13,7 +13,7 @@
     <!-- Brand -->
     <div class="sidebar-brand">
       <div class="brand-icon">
-        <img src="../publico/imagenes/logo" alt="">
+        <img src="../publico/imagenes/logo.svg" alt="">
       </div>
       <div class="brand-name">CHR<span>O</span>NO</div>
     </div>
@@ -78,16 +78,40 @@
     </div>
 
     <!-- Footer user -->
-    <div class="sidebar-footer">
-      <div class="user-chip">
-        <div class="user-avatar">AD</div>
-        <div class="user-info">
-          <div class="user-name">Admin Chrono</div>
-          <div class="user-role">Administrador</div>
+   <?php
+$nombre = $_SESSION["usuario_nombre"];
+$rol = $_SESSION["usuario_rol"];
+
+// Obtener iniciales
+$palabras = explode(" ", trim($nombre));
+$iniciales = "";
+
+foreach ($palabras as $palabra) {
+    if (!empty($palabra)) {
+        $iniciales .= strtoupper(substr($palabra, 0, 1));
+    }
+}
+?>
+
+<div class="sidebar-footer">
+    <div class="user-chip">
+        <div class="user-avatar">
+            <?= htmlspecialchars($iniciales) ?>
         </div>
+
+        <div class="user-info">
+            <div class="user-name">
+                <?= htmlspecialchars($nombre) ?>
+            </div>
+
+            <div class="user-role">
+                <?= htmlspecialchars($rol) ?>
+            </div>
+        </div>
+
         <i class="fas fa-ellipsis-v" style="color:var(--text-dim); font-size:12px;"></i>
-      </div>
     </div>
+</div>
   </nav>
   <!-- ── END SIDEBAR ──────────────────────────────────── -->
 
@@ -125,7 +149,9 @@
         </a>
         <div class="topbar-divider"></div>
         <!-- User -->
-        <div class="user-avatar" style="cursor:pointer; font-size:12px;">AD</div>
+      <div class="user-avatar" style="cursor:pointer; font-size:12px;">
+            <?= htmlspecialchars($iniciales) ?>
+      </div>
       </div>
     </nav>
     <!-- ── END TOPBAR ────────────────────────────────── -->
