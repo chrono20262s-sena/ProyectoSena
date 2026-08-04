@@ -35,11 +35,11 @@
     <div class="card shadow-lg border-0">
 
         <div class="card-body p-5">
-             <form action="../controllers/ProductosMasivaController.php" method="POST" enctype="multipart/form-data">
+             <form action="../controladores/ProductosMasivaController.php" method="POST" enctype="multipart/form-data">
             <p>Subir archivo plano </p>
-            <input type="file" class="upload" aria-describedby="" name="archivoPlano" accept=".xls,.xlsx">
+            <input type="file" class="btn  buscador" aria-describedby="" name="archivoPlano" accept=".xls,.xlsx">
 
-            <button class="btn-home">cargar</button>
+            <button class="btn btn-success">cargar</button>
         </form>
             
 

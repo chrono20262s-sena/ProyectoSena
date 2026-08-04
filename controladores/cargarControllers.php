@@ -34,6 +34,9 @@ function cargar(){
 
                     <th>Unidad</th>
 
+                    <th>cantidad</th>
+
+
                     <th>Coste</th>
 
                     <th>Valor Inventario</th>
@@ -61,6 +64,8 @@ function cargar(){
             <td>".$fila['producto']."</td>
 
             <td>".$fila['unidad']."</td>
+
+            <td>".$fila['cantidad']."</td>
 
             <td>$ ".number_format($fila['coste_unidad'],0,",",".")."</td>
 

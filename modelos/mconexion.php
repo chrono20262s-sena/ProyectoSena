@@ -124,7 +124,34 @@ public function cargarProducto($id){
 
 
 
+	public function saveMasivo($codigo,$familia,$producto,$unidad,$cantidad,$coste_unidad,$valor_inventario){
 
+		 	$modelo = new Conexion();
+   			$conexion = $modelo->get_conexion();
+			$sql = 'INSERT INTO productos (codigo,familia,producto,unidad,cantidad,coste_unidad,valor_inventario) VALUES (:codigo,:familia,:producto,:unidad,:cantidad,:coste_unidad,:valor_inventario)';
+
+			$res = $conexion->prepare($sql);
+			$res->bindParam(':codigo', $codigo);
+			$res->bindParam(':familia', $familia);
+			$res->bindParam(':producto', $producto);
+			$res->bindParam(':unidad', $unidad);
+			$res->bindParam(':cantidad', $cantidad);
+			$res->bindParam(':coste_unidad', $coste_unidad);
+			$res->bindParam(':valor_inventario', $valor_inventario);
+			
+			
+
+			try {
+				$res->execute();
+				echo "<script>alert('Carga Masiva de productos Correctamente!!')</script>";
+				echo "<script>location.href='../vistas/verproductos.php'</script>";
+			} catch (Exception $e) {
+				echo "<script>alert('Error al cargar!!')</script>";
+				echo "<script>location.href='../vistas/cargaMasiva.php'</script>";
+			}
+
+
+		}
 	
 
 	}
