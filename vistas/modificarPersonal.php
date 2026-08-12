@@ -1,8 +1,8 @@
 <?php
 
-require_once("../models/mdb.php");
-require_once("../models/mconexion.php");
-require_once("../controllers/seleccionarControllers.php");
+require_once("../modelos/mdb.php");
+require_once("../modelos/mconexion.php");
+require_once("../controladores/seleccionarPersonalControllers.php");
 
 ?>
 
@@ -15,7 +15,7 @@ require_once("../controllers/seleccionarControllers.php");
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Modificar Producto</title>
+    <title>Modificar Datos del personal</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -34,7 +34,7 @@ require_once("../controllers/seleccionarControllers.php");
 
         <h1 class="titulo">
 
-            Modificar Producto
+            Modificar datos del personal
 
         </h1>
 

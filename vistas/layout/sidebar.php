@@ -67,7 +67,7 @@
         <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
         Reportes de Ventas
       </a>
-      <a href="#" class="nav-item-link">
+      <a href="seepersonal.php" class="nav-item-link">
         <span class="nav-icon"><i class="fas fa-user-shield"></i></span>
         Usuarios
       </a>
@@ -168,3 +168,135 @@ foreach ($palabras as $palabra) {
 
 <!-- Bootstrap 5 JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+  /* ── DATE ───────────────────────────────────────── */
+  const now = new Date();
+  const opts = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+  const dateStr = now.toLocaleDateString('es-CO', opts);
+  document.getElementById('topbarDate').textContent = dateStr;
+  document.getElementById('headerDate').textContent = dateStr;
+
+  /* ── SIDEBAR TOGGLE ─────────────────────────────── */
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebarOverlay').classList.toggle('visible');
+  }
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('visible');
+  }
+
+  /* ── SCROLL TO TOP ───────────────────────────────── */
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 200);
+  });
+
+  /* ── CHARTS ─────────────────────────────────────── */
+  Chart.defaults.color = '#64748b';
+  Chart.defaults.font.family = "'Inter', sans-serif";
+
+  // Revenue Area Chart
+  const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+
+  const gradientFill = revenueCtx.createLinearGradient(0, 0, 0, 280);
+  gradientFill.addColorStop(0, 'rgba(189,142,137,.25)');
+  gradientFill.addColorStop(1, 'rgba(189,142,137,.01)');
+
+  new Chart(revenueCtx, {
+    type: 'line',
+    data: {
+      labels: ['1 Jun','3 Jun','5 Jun','7 Jun','9 Jun','11 Jun','13 Jun','15 Jun','17 Jun','19 Jun','21 Jun','23 Jun','25 Jun','27 Jun','29 Jun'],
+      datasets: [{
+        label: 'Ingresos',
+        data: [820000, 940000, 1100000, 980000, 1250000, 1400000, 1320000, 1580000, 1470000, 1690000, 1820000, 1750000, 2100000, 1960000, 2280000],
+        borderColor: '#BD8E89',
+        backgroundColor: gradientFill,
+        borderWidth: 2,
+        tension: 0.4,
+        fill: true,
+        pointRadius: 4,
+        pointBackgroundColor: '#BD8E89',
+        pointBorderColor: '#111827',
+        pointBorderWidth: 2,
+        pointHoverRadius: 6,
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1a2234',
+          titleColor: '#f1f5f9',
+          bodyColor: '#94a3b8',
+          borderColor: 'rgba(189,142,137,.3)',
+          borderWidth: 1,
+          padding: 12,
+          callbacks: {
+            label: ctx => ' $' + ctx.parsed.y.toLocaleString('es-CO')
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          border: { display: false },
+          ticks: { maxTicksLimit: 7, font: { size: 11 } }
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,.04)', drawBorder: false },
+          border: { display: false, dash: [4, 4] },
+          ticks: {
+            maxTicksLimit: 5,
+            font: { size: 11 },
+            callback: v => '$' + (v / 1000000).toFixed(1) + 'M'
+          }
+        }
+      }
+    }
+  });
+
+  // Category Doughnut Chart
+  const catCtx = document.getElementById('categoryChart').getContext('2d');
+  new Chart(catCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Platos Fuertes', 'Bebidas', 'Postres'],
+      datasets: [{
+        data: [55, 25, 20],
+        backgroundColor: ['#BD8E89', '#7F6269', '#1d2d4a'],
+        hoverBackgroundColor: ['#c99e9a', '#8f7279', '#243554'],
+        borderWidth: 3,
+        borderColor: '#111827',
+        hoverBorderColor: '#111827',
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      cutout: '76%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1a2234',
+          titleColor: '#f1f5f9',
+          bodyColor: '#94a3b8',
+          borderColor: 'rgba(189,142,137,.3)',
+          borderWidth: 1,
+          padding: 12,
+          callbacks: { label: ctx => ' ' + ctx.label + ': ' + ctx.parsed + '%' }
+        }
+      }
+    }
+  });
+
+  /* ── ACTIVE NAV HIGHLIGHT ───────────────────────── */
+  document.querySelectorAll('.nav-item-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      document.querySelectorAll('.nav-item-link').forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>

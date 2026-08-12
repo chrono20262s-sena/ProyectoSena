@@ -1,28 +1,13 @@
 <?php
-require_once("../models/mdb.php");
-require_once("../models/mconexion.php");
-require_once("../controllers/cargarControllers.php");
+require ('../modelos/exigirsesion.php');
+require_once("../modelos/mdb.php");
+require_once("../modelos/mconexion.php");
+require_once("../controladores/cargarPersonalControllers.php");
+require_once("layout/heade.php");
+require_once("layout/sidebar.php");
+
 ?>
-<?php   include'../../../vistas/layout/heade.php';
-        include'../../../vistas/layout/sidebar.php';
-        include'../../../vistas/layout/footer.php'; ?>
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Inventario</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="../public/css/style.css">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-</head>
 
 <body>
 
@@ -31,14 +16,14 @@ require_once("../controllers/cargarControllers.php");
     <div class="encabezado mb-5">
 
         <h1 class="titulo">
-            Inventory List
+            Personal
         </h1>
 
-        <a href="insertProduct.php" class="btn btn-success btn-lg">
+        <a href="insertPersonal.php" class="btn btn-success btn-lg">
 
             <i class="bi bi-plus-circle"></i>
 
-            Nuevo Producto
+            Nuevo Personal
 
         </a>
 

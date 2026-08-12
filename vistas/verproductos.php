@@ -4,26 +4,11 @@ require_once("../modelos/mdb.php");
 require_once("../modelos/mconexion.php");
 require_once("../controladores/cargarControllers.php");
 ?>
-<?php   include'layout/heade.php';
-        include'layout/sidebar.php';
+<?php 
+    include'layout/heade.php';
+    include'layout/sidebar.php';
         ?>
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Inventario</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="../publico/css/style.css">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-</head>
 
 <body >
 
