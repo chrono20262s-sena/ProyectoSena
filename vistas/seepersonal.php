@@ -18,7 +18,13 @@ require_once("layout/sidebar.php");
         <h1 class="titulo">
             Personal
         </h1>
+        <a href="cargaMasiva.php" class="btn btn-success btn-lg">
 
+            <i class="bi bi-plus-circle"></i>
+
+            carga masiva
+
+        </a>
         <a href="insertPersonal.php" class="btn btn-success btn-lg">
 
             <i class="bi bi-plus-circle"></i>

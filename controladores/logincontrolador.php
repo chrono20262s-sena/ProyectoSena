@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION["usuario_nombre"] = $usuarioValido["nombre"];
         $_SESSION["usuario_rol"]    = $usuarioValido["rol"];
 
-        header("Location: ../vistas/inicio.php");
+        header("Location: ../vistas/dashboard.php");
         exit;
     } else {
         $_SESSION["mensaje"] = "Correo o contraseña incorrectos.";

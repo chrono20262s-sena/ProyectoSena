@@ -387,7 +387,34 @@ END AS estado
         $res = $this->conexion->prepare($sql);
         $res->execute();
         return $res->fetchAll(PDO::FETCH_ASSOC);
+
     }
+ 
+public function productosGeneral(){
+    $sql = "SELECT 
+                codigo, 
+                familia, 
+                producto, 
+                unidad, 
+                cantidad, 
+                coste_unidad, 
+                (cantidad * coste_unidad) AS valor_inventario 
+            FROM productos";
+            
+    try {
+        $res = $this->conexion->prepare($sql);
+        $res->execute();
+        $resultado = $res->fetchAll(PDO::FETCH_ASSOC);
+        
+        // Si no hay resultados, fetchAll() devuelve false o null, aseguramos un arreglo vacío
+        return $resultado ? $resultado : [];
+    } catch (Exception $e){
+        // En caso de excepción, devolvemos un arreglo vacío para no romper el foreach
+        return [];
+    }
+}
+
+		
 }	//Cierra  clase consultas 
 
 
@@ -398,22 +425,7 @@ END AS estado
 
 
 
-		// public function listarGruposSanguineos(){
-		//     $sql = "SELECT * FROM grupo_sanguineo ORDER BY nombreGrupo_Sanguineo";
-		//     $res = $this->conexion->prepare($sql);
-		//     $res->execute();
 
-		//     return $res->fetchAll(PDO::FETCH_ASSOC);
-		// }
-
-		// public function listarTipoDocumento(){
-		// 	$sql = "SELECT * FROM tipo_documento ORDER BY nombreDocumento";
-		// 	$res = $this->conexion->prepare($sql);
-		//     $res->execute();
-
-		//     return $res->fetchAll(PDO::FETCH_ASSOC);
-
-		// }
 
 		
 

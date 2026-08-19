@@ -35,6 +35,18 @@ require_once("../controladores/cargarControllers.php");
 
         </a>
 
+        <form action="../controladores/ProductosReporteExcelController.php" method="POST" enctype="multipart/form-data">
+            <button class="btn btn-success bi bi-plus-circle">descargar excel</button>
+
+                  
+        </form>
+
+        <form action="../controladores/ProductosReportePDFController.php" method="POST" enctype="multipart/form-data">
+            <button class="btn btn-success bi bi-plus-circle">descargar pdf</button>
+
+                  
+        </form>
+
     </div>
 
     <div class="card shadow-lg border-0">

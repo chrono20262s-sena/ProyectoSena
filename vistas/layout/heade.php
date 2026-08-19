@@ -7,6 +7,8 @@
   <title>CHRONO — Dashboard</title>
   <link rel="stylesheet" href="../../../chronoweb/publico/css/style-dashboard.css">
   <link rel="stylesheet" href="../../../chronoweb/publico/css/master.css">
+  <link rel="stylesheet" href="../publico/css/style.css">
+
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,6 +19,8 @@
 
   <!-- Chart.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+   
 
  
 </head>

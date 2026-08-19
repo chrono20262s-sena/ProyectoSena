@@ -30,6 +30,8 @@ $cargo = $consultas->listarCargo();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Personal || Chrono</title>
     <link rel="stylesheet" href="../publico/css/style.css">
+    <link rel="stylesheet" href="../publico/css/insertarpersonal.css">
+
 </head>
 
 <body>

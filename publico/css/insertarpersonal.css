@@ -1,0 +1,197 @@
+/* ==========================================
+   VARIABLES & CONFIGURACIÓN GENERAL
+   ========================================== */
+:root {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #cbd5e1;
+  --focus-ring: rgba(37, 99, 235, 0.2);
+  --radius: 8px;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* ==========================================
+   CONTENEDOR PRINCIPAL (CARD)
+   ========================================== */
+main.add {
+  background: var(--card-bg);
+  width: 100%;
+  max-width: 650px;
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f1f5f9;
+  position: relative;
+}
+
+header h2 {
+  font-size: 1.5rem;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* BOTONES DE NAVEGACIÓN EN EL HEADER */
+header .back,
+header .close {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+header .back::before { content: "←"; }
+header .close::before { content: "✕"; }
+
+header .back:hover,
+header .close:hover {
+  background-color: #f1f5f9;
+  color: var(--text-main);
+}
+
+/* ==========================================
+   FORMULARIO E INPUTS
+   ========================================== */
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Elementos que deben ocupar ambas columnas */
+form > label,
+form > button,
+form > .select:first-child {
+  grid-column: span 2;
+}
+
+/* Estilos de inputs de texto, número, fecha y correo */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+/* SELECTS PERSONALIZADOS */
+.select {
+  position: relative;
+  width: 100%;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+/* Flecha desplegable para los select */
+.select::after {
+  content: "▾";
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* LABELS */
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-top: 5px;
+  display: block;
+}
+
+/* ==========================================
+   BOTÓN SUBMIT
+   ========================================== */
+.btn-home {
+  grid-column: span 2;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-home:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-home:active {
+  transform: scale(0.99);
+}
+
+/* ==========================================
+   RESPONSIVE (PANTALLAS PEQUEÑAS)
+   ========================================== */
+@media (max-width: 580px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  form > *,
+  form > .select:first-child,
+  .btn-home {
+    grid-column: span 1;
+  }
+}
