@@ -11,7 +11,7 @@ class Conexion {
 
     // Datos de conexión (ajústalos si tu XAMPP los tiene distintos)
     private $host = "localhost";
-    private $baseDatos = "chronoWed";
+    private $baseDatos = "chronoweb";
     private $usuario = "root";
     private $contrasena = "";
 

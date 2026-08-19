@@ -4,25 +4,43 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// Limpiar cualquier buffer de salida previo que pueda corromper el PDF
+if (ob_get_length()) {
+    ob_end_clean();
+}
+
 include_once("../modelos/mdb.php");
 include("../modelos/mconexion.php");
 
 require __DIR__ . '/../vendor/autoload.php';
 
 use Dompdf\Dompdf;
+use Dompdf\Options;
 
-// Consulta de datos de productos
+// 1. Instanciar consulta
 $reportePdf = new Consultas();
-$ProductosGeneral = $reportePdf->ProductosGeneral();
+
+// Revisa si en tu clase el método es productosGeneral() o ProductosGeneral()
+if (method_exists($reportePdf, 'productosGeneral')) {
+    $productosGeneral = $reportePdf->productosGeneral();
+} elseif (method_exists($reportePdf, 'ProductosGeneral')) {
+    $productosGeneral = $reportePdf->ProductosGeneral();
+} else {
+    die("Error: El método de consulta no existe en la clase Consultas.");
+}
 
 date_default_timezone_set('America/Bogota');
 $fecha2 = date("Ymd_His");
-
 $noar = "REPORTE PRODUCTOS " . $fecha2;
 
-$dompdf = new Dompdf();
+// 2. Configurar opciones de Dompdf para evitar bloqueos
+$options = new Options();
+$options->set('isRemoteEnabled', true);
+$options->set('isHtml5ParserEnabled', true);
 
-// Construcción de la plantilla HTML
+$dompdf = new Dompdf($options);
+
+// 3. Armar HTML (Limpio y compatible con Dompdf)
 $html = '
 <!DOCTYPE html>
 <html lang="es">
@@ -31,7 +49,7 @@ $html = '
     <title>' . htmlspecialchars($noar) . '</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Helvetica, Arial, sans-serif;
             font-size: 10px;
             color: #333333;
         }
@@ -49,15 +67,15 @@ $html = '
 
         th {
             background-color: #333333;
-            color: white;
+            color: #ffffff;
             padding: 6px;
-            border: 1px solid #000;
+            border: 1px solid #000000;
             text-align: center;
         }
 
         td {
             padding: 5px;
-            border: 1px solid #000;
+            border: 1px solid #000000;
             text-align: center;
         }
 
@@ -70,7 +88,6 @@ $html = '
         }
     </style>
 </head>
-
 <body>
 
 <h1>' . htmlspecialchars($noar) . '</h1>
@@ -90,10 +107,9 @@ $html = '
     <tbody>
 ';
 
-// Recorremos los resultados de la consulta de productos
-if (is_array($ProductosGeneral) && !empty($ProductosGeneral)) {
-    foreach ($ProductosGeneral as $producto) {
-        // Formateo de valores numéricos
+// 4. Recorrer datos
+if (is_array($productosGeneral) && !empty($productosGeneral)) {
+    foreach ($productosGeneral as $producto) {
         $costeUnidad = isset($producto['coste_unidad']) ? '$ ' . number_format((float)$producto['coste_unidad'], 2, ',', '.') : '$ 0,00';
         $valorInventario = isset($producto['valor_inventario']) ? '$ ' . number_format((float)$producto['valor_inventario'], 2, ',', '.') : '$ 0,00';
         $cantidad = isset($producto['cantidad']) ? number_format((float)$producto['cantidad'], 0, ',', '.') : '0';
@@ -125,15 +141,18 @@ $html .= '
 </html>
 ';
 
-// Carga y renderizado del PDF con Dompdf
+// 5. Cargar HTML y Renderizar
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'landscape');
 $dompdf->render();
 
-// Descarga directa del archivo
+// 6. Limpieza final de buffer e impresión del Stream
+if (ob_get_length()) {
+    ob_end_clean();
+}
+
 $dompdf->stream(
     "Reporte - " . $noar . ".pdf",
     ["Attachment" => true]
 );
 exit;
-?>
